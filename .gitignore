@@ -1,0 +1,18 @@
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# secrets and key material (PRD §29)
+.env
+.env.*
+!.env.example
+*.db
+*.sqlite
+*.sqlite3
+
+# design tooling output
+.taste-skill/inspect/
+.taste-skill/before/
+.taste-skill/after/
