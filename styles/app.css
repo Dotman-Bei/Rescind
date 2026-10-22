@@ -73,7 +73,8 @@
 .cols { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); align-items: start; }
 .stack { display: grid; gap: var(--gap); }
 .span-12 { grid-column: span 12; } .span-8 { grid-column: span 8; } .span-7 { grid-column: span 7; }
-.span-6 { grid-column: span 6; } .span-5 { grid-column: span 5; } .span-4 { grid-column: span 4; }
+.span-6 { grid-column: span 6; }
+.cols.stretch { align-items: stretch; } .span-5 { grid-column: span 5; } .span-4 { grid-column: span 4; }
 
 /* ---------- panels ---------- */
 .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: var(--card-pad); min-width: 0; }
@@ -277,3 +278,15 @@
 .field-error { color: var(--negative); font-size: 13px; line-height: 18px; }
 .login-foot { margin-top: 24px; }
 .login-notice { margin-top: 16px; }
+
+/* ---------- connect ---------- */
+.path { display: flex; flex-direction: column; gap: 16px; align-self: stretch; }
+.path > header { margin-bottom: 0; }
+.path p { font-size: 16px; line-height: 24px; max-width: 60ch; }
+.path-steps { display: grid; gap: 8px; padding-left: 20px; margin: 0; color: var(--muted); }
+.path-foot { margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding-top: 8px; }
+.can-row { justify-content: space-between; align-items: center; }
+.can-what { font-weight: 600; }
+.can-what .sub { display: block; font-weight: 400; color: var(--muted); font-size: var(--fs-small); line-height: 16px; margin-top: 2px; }
+.ded-copy { margin-top: 0; }
+.path .notice { margin: 0; }
