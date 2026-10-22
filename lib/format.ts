@@ -32,7 +32,7 @@ export function span(ms: number) {
   const m = Math.floor(s / 60);
   if (m < 60) return `${m} min ${Math.round(s - m * 60)} s`;
   const h = Math.floor(m / 60);
-  return `${h} h ${m - h * 60} m`;
+  return m - h * 60 ? `${h} h ${m - h * 60} m` : `${h} h`;
 }
 
 /** 23:59:41 countdown */
