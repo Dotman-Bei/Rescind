@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { LoginForm } from "@/components/app/LoginForm";
-import { span } from "@/lib/format";
+import { ago } from "@/lib/format";
 import { SAMPLE_NOW, account, settings, watches } from "@/lib/sample";
 
 export default function LoginPage() {
@@ -33,7 +33,7 @@ export default function LoginPage() {
               <span className="meta">From /api/health, public</span>
             </header>
             <dl className="kv">
-              <div><dt>Worker</dt><dd>Last tick {span(SAMPLE_NOW - account.workerHeartbeatAt)} ago</dd></div>
+              <div><dt>Worker</dt><dd>Last tick {ago(SAMPLE_NOW - account.workerHeartbeatAt)} ago</dd></div>
               <div><dt>Strike</dt><dd>Reachable · {account.network === "mainnet" ? "api.strikefinance.org" : "api-v2-testnet.strikefinance.org"}</dd></div>
               <div><dt>Poll interval</dt><dd>Every {settings.pollIntervalS} s</dd></div>
               <div><dt>Watches</dt><dd>{armed} armed · {dry} dry run</dd></div>

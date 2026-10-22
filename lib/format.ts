@@ -35,6 +35,14 @@ export function span(ms: number) {
   return m - h * 60 ? `${h} h ${m - h * 60} m` : `${h} h`;
 }
 
+/** 2 s, 4 min, 3 h: for freshness stamps */
+export function ago(ms: number) {
+  const s = Math.max(0, Math.round(ms / 1000));
+  if (s < 60) return `${s} s`;
+  const m = Math.round(s / 60);
+  return m < 60 ? `${m} min` : `${Math.round(m / 60)} h`;
+}
+
 /** 23:59:41 countdown */
 export function hms(ms: number) {
   const t = Math.max(0, Math.floor(ms / 1000));

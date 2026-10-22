@@ -192,9 +192,9 @@
 
 /* dialog */
 .dialog-backdrop { position: fixed; inset: 0; background: rgba(24, 23, 21, 0.32); display: grid; place-items: center; z-index: 60; padding: 16px; animation: fade 160ms ease; }
-.dialog { width: min(480px, 100%); background: var(--surface); border-radius: 12px; padding: 24px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18); /* taste-skill-ignore: a dialog floats */ display: grid; gap: 16px; animation: lift 160ms var(--ease-out); }
+.dialog { width: min(560px, 100%); background: var(--surface); border-radius: 12px; padding: 24px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18); /* taste-skill-ignore: a dialog floats */ display: grid; gap: 16px; animation: lift 160ms var(--ease-out); }
 .dialog h2 { font-size: 18px; line-height: 24px; font-weight: 600; }
-.dialog .actions { display: flex; justify-content: flex-end; gap: 8px; }
+.dialog .actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
 @keyframes fade { from { opacity: 0; } }
 @keyframes lift { from { opacity: 0; transform: translateY(4px); } }
 .arrive { animation: arrive 600ms ease; }
@@ -322,3 +322,27 @@
 .two-col h2 { margin-bottom: 12px; }
 .well.message.preview { color: var(--muted); }
 @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; gap: 24px; } }
+
+/* ---------- watches home ---------- */
+.pending-body { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr); gap: 32px; align-items: start; }
+.pending-side { display: grid; gap: 14px; }
+.pending-side p { max-width: 52ch; }
+.pending-actions { display: grid; gap: 12px; }
+.pending-buttons { display: flex; align-items: center; gap: 16px; }
+.watch-table td:first-child { width: 30%; }
+@media (max-width: 860px) { .pending-body { grid-template-columns: 1fr; gap: 20px; } }
+@media (max-width: 640px) {
+  .watch-table thead { display: none; }
+  .watch-table, .watch-table tbody, .watch-table tr, .watch-table td { display: block; width: auto !important; }
+  .watch-table tr { padding: 12px var(--card-pad); border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; }
+  .watch-table tr:last-child { border-bottom: 0; }
+  .watch-table td { padding: 0 !important; border: 0; text-align: left; }
+  .watch-table td:nth-child(2) { grid-column: 2; grid-row: 1; justify-self: end; }
+  .watch-table td:nth-child(3) { grid-column: 1 / -1; color: var(--muted); }
+  .watch-table td:nth-child(4), .watch-table td:nth-child(5) { color: var(--muted); font-size: 13px; }
+  .watch-table td:nth-child(4) { grid-column: 1; text-align: left !important; }
+  .watch-table td:nth-child(4)::before { content: "Breached "; }
+  .watch-table td:nth-child(4) .sub { display: inline; margin-left: 4px; }
+  .watch-table td:nth-child(4) .sub::before { content: "· "; }
+  .watch-table td:nth-child(5) { grid-column: 2; justify-self: end; }
+}
