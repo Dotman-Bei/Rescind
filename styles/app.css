@@ -113,7 +113,7 @@
 .app th:last-child, .app td:last-child { padding-right: var(--card-pad); }
 .app tbody tr:last-child td { border-bottom: 0; }
 .app th.n, .app td.n { text-align: right; }
-.app td .sub { display: block; font-size: var(--fs-small); line-height: 16px; color: var(--muted); margin-top: 2px; }
+.app td .sub { display: block; font-size: 13px; line-height: 18px; color: var(--muted); margin-top: 2px; }
 .app tfoot td { border-top: 1px solid var(--border); border-bottom: 0; font-weight: 600; }
 .name-link { font-weight: 600; }
 .name-link:hover { text-decoration: underline; text-underline-offset: 3px; }
@@ -345,4 +345,31 @@
   .watch-table td:nth-child(4) .sub { display: inline; margin-left: 4px; }
   .watch-table td:nth-child(4) .sub::before { content: "· "; }
   .watch-table td:nth-child(5) { grid-column: 2; justify-self: end; }
+}
+
+/* ---------- vaults ---------- */
+.vault-table td:first-child { width: 28%; }
+.action-cell { white-space: nowrap; }
+.vault-notes { margin-top: var(--gap); }
+.app .vault-table td .narrow-only { display: none; }
+@media (max-width: 1100px) {
+  .vault-table th:nth-child(n+4):nth-child(-n+7), .vault-table td:nth-child(n+4):nth-child(-n+7) { display: none; }
+  .app .vault-table td .narrow-only { display: block; }
+  .vault-table td:first-child { width: auto; }
+}
+@media (max-width: 640px) {
+  .vault-table thead { display: none; }
+  .vault-table, .vault-table tbody, .vault-table tr, .vault-table td { display: block; width: auto !important; }
+  .vault-table tr { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 14px var(--card-pad); border-bottom: 1px solid var(--rule); }
+  .vault-table tr:last-child { border-bottom: 0; }
+  .vault-table td { padding: 0 !important; border: 0; }
+  .vault-table td:first-child { grid-column: 1 / -1; }
+  .vault-table td:nth-child(2) { grid-column: 1; text-align: left !important; }
+  .vault-table td:nth-child(2)::before { content: "Equity "; color: var(--muted); }
+  .vault-table td:nth-child(3) { grid-column: 2; grid-row: 2; }
+  .vault-table td:nth-child(3)::before { content: "Share "; color: var(--muted); }
+  .vault-table td:nth-child(8) { grid-column: 1; text-align: left !important; }
+  .vault-table td:nth-child(8)::before { content: "Yours "; color: var(--muted); }
+  .vault-table td:nth-child(8) .sub { display: inline; margin-left: 4px; }
+  .vault-table td:nth-child(9) { grid-column: 2; grid-row: 3; align-self: center; }
 }
