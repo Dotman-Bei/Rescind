@@ -290,3 +290,21 @@
 .can-what .sub { display: block; font-weight: 400; color: var(--muted); font-size: var(--fs-small); line-height: 16px; margin-top: 2px; }
 .ded-copy { margin-top: 0; }
 .path .notice { margin: 0; }
+
+/* ---------- step flows (connect/key, connect/wallet) ---------- */
+.flow { display: grid; list-style: none; padding: 0; margin: 0; }
+.flow-step { display: grid; gap: 12px; justify-items: start; padding: 20px 0; color: var(--faint); }
+.flow-step:first-child { padding-top: 0; }
+.flow-step:last-child { padding-bottom: 0; }
+.flow-step + .flow-step { border-top: 1px solid var(--rule); }
+.flow-step h2 { font-size: var(--fs-section); line-height: 22px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.flow-step p { max-width: 64ch; font-size: 15px; line-height: 22px; }
+.flow-step.current, .flow-step.done { color: var(--text); }
+.flow-step.done h2::after { content: "Done"; font-size: var(--fs-small); font-weight: 600; color: var(--pill-positive-ink); background: var(--pill-positive-bg); border-radius: 999px; padding: 0 8px; line-height: 22px; }
+.flow-step .joined { width: 100%; }
+.flow-step .notice { width: 100%; }
+.flow-step .small.muted { color: var(--muted); }
+.flow-actions { display: flex; align-items: center; gap: 16px; }
+.fail-list { display: grid; gap: 14px; }
+.fail-list dt { font-weight: 600; }
+.fail-list dd { color: var(--muted); margin-top: 2px; }
