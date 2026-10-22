@@ -39,7 +39,8 @@
 .app .faint { color: var(--faint); }
 .app .small { font-size: var(--fs-small); line-height: 16px; }
 .app .id { font-variant-numeric: tabular-nums; letter-spacing: 0.01em; }
-.app code, .app pre { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 13px; }
+.app code { font-family: inherit; font-weight: 600; }
+.app pre, .app pre code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 13px; font-weight: 400; }
 .app .wordmark-app { font-family: var(--font-display); font-size: 20px; letter-spacing: 0.01em; text-transform: uppercase; line-height: 1; }
 
 /* ---------- shell: open plane ---------- */
@@ -265,3 +266,14 @@
   .joined .input { border-radius: var(--radius-control); }
   .joined .btn { border-radius: var(--radius-control); margin-left: 0; }
 }
+
+/* ---------- login ---------- */
+.login-main { min-height: calc(100svh - 56px); display: grid; align-content: center; }
+.login-cols { align-items: stretch; }
+.login-title { font-size: var(--fs-title); line-height: 30px; font-weight: 600; }
+.login-sub { margin-top: 8px; font-size: 16px; line-height: 24px; }
+.login-form { display: grid; gap: 16px; margin-top: 24px; justify-items: start; }
+.login-form .field { width: 100%; }
+.field-error { color: var(--negative); font-size: 13px; line-height: 18px; }
+.login-foot { margin-top: 24px; }
+.login-notice { margin-top: 16px; }
