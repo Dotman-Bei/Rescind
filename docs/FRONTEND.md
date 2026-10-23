@@ -192,7 +192,8 @@ links behind a "Menu" text button.
 - Button: **Connect your key**. Text link beside it: "Read a receipt".
 
 **Section: stats, as a column aligned on the decimal** (`#vault`)
-- `h2`, two lines, the first in muted ink: "Strike's largest vault, / read just now."
+- `h2`, two lines, the first in muted ink: "Glacier Arc, / read just now" (the first two words of the live vault's name). The
+  statement under the figures says it is the largest user vault on Strike by equity.
 - Figures, live from `GET /v2/vaults`, `GET /v2/positions?vault_id=` and
   `GET /v2/vault/:id/depositors`, with a fallback snapshot taken Oct 22, 2026:
   - `18` "open positions in Glacier Arc Digital, all cross margin"
@@ -204,8 +205,8 @@ links behind a "Menu" text button.
   carries, so your rule fires on the position, not the label."
 - Source line (small): "Read from api.strikefinance.org at 21:04. Glacier Arc Digital is a user vault on
   Strike; Rescind is not affiliated with it."
-- Picture: the NYSE trading floor (Carol M. Highsmith, public domain), set in columns 1–5 under the
-  heading. Caption: "Trading floor of the New York Stock Exchange. Carol M. Highsmith."
+- Picture: the NYSE trading floor (Carol M. Highsmith, public domain), in greyscale, set in columns 1–5
+  under the heading. Caption: "Trading floor of the New York Stock Exchange. Carol M. Highsmith."
 
 **Section: how it works, as stages on one bar** (`#how`, dark field)
 - `h2`: "Ten seconds, then a day"
@@ -214,14 +215,17 @@ links behind a "Menu" text button.
   - "Under a second": "Then it files your withdrawal with your master API wallet. The exit clock starts."
   - "24 hours": "While it runs, a cure cancels the withdrawal. Free, and your shares unlock."
   - "At execution": "If the leader never cures, Strike pays you at that moment's share price."
-- Statement below: "An alert would have woken you at 3 a.m. You would still have had to file, and every
-  hour you slept would be paid in exit price."
+- Statement below, beside a muted greyscale loop of a ticking museum wall clock (Furkan Akkurt, CC BY-SA
+  4.0): "An alert would have woken you at 3 a.m. You would still have had to file, and every hour you slept
+  would be paid in exit price."
 
-**Rest: the chronometer.** One full-bleed photograph band, the Hamilton Model 21 marine chronometer
-movement (1943, public domain), cropped wide. Caption: "Hamilton Model 21 marine chronometer, 1943."
+**Rest: the chronometer.** One full-bleed band: figure 13 of the 1943 Hamilton Model 21 marine chronometer
+manual (public domain), an exploded line drawing of the gear train, multiplied onto the newsprint ground.
+Caption: "Hamilton Model 21 marine chronometer, figure 13 of its 1943 manual."
 
 **Section: showcase, a headline you can type** (`#mandate`)
-- `h2`: "Write a rule. We'll test it live."
+- `h2` in muted ink: "Write a rule". The input below it, in full ink with an 8px tone bar under it, completes
+  the sentence.
 - The input, at display scale, prefilled `max 3x leverage`.
 - The answer panel (`data-ui`, max 560px): rule, measured, limit, verdict, and the consequence line.
   - Pass: "Glacier Arc Digital carries 1.12x. Your limit is 3x. Rescind would stay quiet."
@@ -236,11 +240,12 @@ movement (1943, public domain), cropped wide. Caption: "Hamilton Model 21 marine
 - `h2`: "Check it yourself"
 - Lead: "Every action leaves a receipt that pairs two public Strike rows. You need no login and no
   trust in us: open both URLs and compare the timestamps."
-- The card (paper, turned 1.5°, cut off by the section's bottom edge), headed "Receipt", with:
-  vault, rule broken ("Effective leverage 14.8x > 5x"), breaching fill (time, symbol, side, size,
-  price), withdrawal filed (time, id), execute at, status ("Cancelled at 11:06:41 · cost $0.00"), and
-  **Gap: 6.5 s**.
-- Below the card's crop, a link: "Open the sample receipt" → `/verify/rc_8Hq2vXk4Tn`.
+- The card (paper, turned 1.5°, cut off by the section's bottom edge), headed "Receipt": **Gap, fill to
+  filing: 6.5 s** first, then rule broken ("Effective leverage 14.8x > 5x"), breaching fill 4346118 at
+  11:03:12.418 (ETH-USD buy 2.57 at 2,377.03), withdrawal 7e2b9c14… filed 11:03:18.902, executes Oct 23,
+  11:03, status "Cancelled 11:06:40 · cost $0.00", and the two public URLs, which the crop cuts.
+- Beside the heading, the lead and a button: "Open the sample receipt" → `/verify/rc_8Hq2vXk4Tn`.
+- FAQ left column: the three calls Rescind's Strike client allows, so the indent holds a fact.
 
 **Section: FAQ, wide heading and indented questions** (`#safety`)
 - `h2`: "Your key, your machine"
@@ -286,7 +291,7 @@ centred 1100px column.
 - **The exit clock bar** for this withdrawal: requested 11:03:18 → execute_at Oct 23 11:03:18, with the
   cure stamped at 11:06:41 and the track ending there ("Cancelled, 3 min 22 s in").
 - **Check it yourself** (an `<ol>`, numbering allowed as real order):
-  1. "Open the vault's fills. Find fill 4346118: ETH-USD, buy, 0.62 at 2,377.03, at 11:03:12.418."
+  1. "Open the vault's fills. Find fill 4346118: ETH-USD, buy, 2.57 at 2,377.03, at 11:03:12.418."
      `GET https://api.strikefinance.org/v2/history/fill?vault_id=…` (button: **Open fills**)
   2. "Open the vault's history. Find withdrawal 7e2b9c14: requested 11:03:18.902, status cancelled."
      `GET https://api.strikefinance.org/v2/vault/…/history` (button: **Open history**)
@@ -504,7 +509,18 @@ tempted by:
 
 ---
 
-## 6. Sample data (to replace before launch)
+## 6. As built
+
+- Dev server: `npm run dev` serves on port 3217 (3000 and 3100 are taken on this machine by other projects).
+- The two-sheet split: `styles/site.css` (public pages, scoped under `.site`) and `styles/app.css` (verify,
+  login and the operator screens, scoped under `.app`), loaded from the root layout so `notFound()` pages
+  keep their styles.
+- Writes go through `lib/client.ts` to the PRD §15 routes. Until the backend exists those return 404, and
+  every action says "Sample build: nothing was sent" instead of pretending.
+- Every screen passed `inspect.mjs` (desktop 1440, tablet 768, phone 390) with 0 FAIL; see the build log
+  in the session report for the remaining defended WARNs.
+
+## 7. Sample data (to replace before launch)
 
 The app screens render from `lib/sample.ts` until the backend routes in PRD §15 exist. The landing
 page's live fact reads Strike's public API and falls back to the snapshot in `lib/fallback.ts`.
