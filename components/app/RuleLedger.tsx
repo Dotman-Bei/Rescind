@@ -17,7 +17,7 @@ const limitText = (r: RuleResult) => {
 /** One row per rule: measured against limit as a bar with a tick at the limit. For the stake rule the
  *  breach is falling below the floor, so the bar still fills toward the tick. */
 function Bullet({ r }: { r: RuleResult }) {
-  if (r.status === "off" || r.value === null || r.rule === "markets") return <span aria-hidden="true" />;
+  if (r.status === "off" || r.value === null || r.rule === "markets") return <span className="bullet-empty" aria-hidden="true" />;
   const limit = r.limit ?? 0;
   const max = Math.max(limit * 2, r.value * 1.15, 1);
   return (
