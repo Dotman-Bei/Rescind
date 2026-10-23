@@ -14,6 +14,8 @@ export type EditorVault = {
   leaderSharePct: number | null;
   availableShares: number;
   creditEncumbered: number;
+  /** set when editing an armed watch: drawdown is measured from it, not seeded */
+  peak?: number;
 };
 
 export type Draft = {
@@ -47,7 +49,12 @@ function evaluate(d: Draft, v: EditorVault) {
       : { verdict: outside.length ? "breach" : "pass", now: outside.length ? `${outside.length} held outside: ${outside.slice(0, 5).map(short).join(", ")}${outside.length > 5 ? ` and ${outside.length - 5} more` : ""}` : "Every held market is on the list" },
     drawdown: !d.drawdown.on
       ? { verdict: "off", now: "" }
-      : { verdict: dd > 0 ? "pass" : "unknown", now: `Peak seeds at ${v.sharePrice.toFixed(4)} when you arm, so it starts at 0.0%${dd > 0 ? `. Fires below ${(v.sharePrice * (1 - dd / 100)).toFixed(4)}` : ""}` },
+      : v.peak !== undefined
+        ? (() => {
+            const now = (1 - v.sharePrice / v.peak!) * 100;
+            return { verdict: !(dd > 0) ? "unknown" : now > dd ? "breach" : "pass", now: `Peak ${v.peak!.toFixed(4)} since armed; now ${now.toFixed(2)}% below it` } as const;
+          })()
+        : { verdict: dd > 0 ? "pass" : "unknown", now: `Peak seeds at ${v.sharePrice.toFixed(4)} when you arm, so it starts at 0.0%${dd > 0 ? `. Fires below ${(v.sharePrice * (1 - dd / 100)).toFixed(4)}` : ""}` },
     stake: !d.stake.on
       ? { verdict: "off", now: "" }
       : v.leaderSharePct === null
@@ -66,12 +73,14 @@ export function MandateEditor({
   mode,
   watchId,
   nextVersion,
+  aside,
 }: {
   vault: EditorVault;
   initial: Draft;
   mode: "create" | "edit";
   watchId?: string;
   nextVersion?: number;
+  aside?: React.ReactNode;
 }) {
   const router = useRouter();
   const [d, setD] = useState<Draft>(initial);
@@ -213,8 +222,12 @@ export function MandateEditor({
           <p className="muted">
             {enabled.length === 0
               ? "Turn on at least one rule to arm."
+              : mode === "edit"
+                ? breaching.length
+                  ? "Still breached under this version. A pending withdrawal keeps running, and Rescind never files a second one."
+                  : "Passes under this version. Saved, three passing reads count as a cure and cancel any pending withdrawal."
               : breaching.length
-                ? armed && mode === "create"
+                ? armed
                   ? "Arming files a withdrawal immediately, on the second breaching read."
                   : "A dry run would log this as a breach and file nothing."
                 : "Nothing would fire right now."}
@@ -285,6 +298,7 @@ export function MandateEditor({
           )}
           {mode === "edit" && <p className="muted">The new version applies from the next read. Receipts keep the version that fired them.</p>}
         </section>
+        {aside}
       </aside>
 
       {confirm && (
