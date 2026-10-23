@@ -17,7 +17,20 @@ Every breach leaves a receipt that pairs two public Strike rows. No login, no tr
 
 The withdrawal's `timestamp` minus the fill's `timestamp` is the claim. The public verify page (`/verify/<receipt id>`) links both rows and shows the gap.
 
-> Demo vault id and a published receipt link: _added after the mainnet smoke test and demo recording._
+## Status at submission (read this)
+
+- **Live on mainnet, read side:** the worker watches three real Strike user vaults in **dry-run** mode
+  (Glacier Arc Digital, MARKET WIZARDS, Strike V.I.S.I.O.N. Strategy), evaluates all four rules every 5 s, and
+  logs "would file" when a mandate breaks. At submission, Glacier Arc breaks a crypto-only mandate (11 stock and
+  commodity markets) and MARKET WIZARDS breaks a 2x limit (2.37x measured).
+- **Verified on mainnet, auth:** a Rescind-generated Ed25519 key was registered with Authorize on Strike, and a
+  signed `GET /v2/account` succeeded on the master account (no sub-account binding).
+- **Built but not yet exercised on mainnet, write side:** `POST /v2/vault/withdraw` and the cancel route. The
+  depositor account had no vault shares at submission, so there was nothing to withdraw. The full path (idempotency
+  check, file, pending-row tracking, cure cancel, flapping guard, receipt) is in `worker/index.ts`, and
+  `npx tsx scripts/rescind.ts smoke <vaultId> --confirm` runs the file → pending → cancel check the moment the
+  account holds shares.
+- The receipt shown on `/verify/rc_8Hq2vXk4Tn` is **sample data** that shows what a real receipt looks like.
 
 ## One live fact
 
