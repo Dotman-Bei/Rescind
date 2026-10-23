@@ -17,3 +17,6 @@ next-env.d.ts
 .taste-skill/inspect/
 .taste-skill/before/
 .taste-skill/after/
+
+# runtime state with encrypted key material
+data/
