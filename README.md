@@ -4,7 +4,9 @@
 
 Rescind watches a Strike user vault against rules its depositor set. The moment the leader breaks one, it files that depositor's deferred withdrawal through the Strike API. If the leader cures before the withdrawal executes, Rescind cancels it, free.
 
-Built for the Strike Hackathon (Oct 2026). Not affiliated with Strike Finance. Not financial advice.
+**Live demo:** https://rescind-pi.vercel.app (landing page reads Strike mainnet live; sample receipt at https://rescind-pi.vercel.app/verify/rc_8Hq2vXk4Tn). The hosted demo is read-only: the worker that files and cancels runs on your own machine (see Setup).
+
+Built for the Strike Hackathon (Oct 2026).
 
 ---
 
