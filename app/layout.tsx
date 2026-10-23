@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./base.css";
+import "@/styles/app.css";
 
 export const metadata: Metadata = {
   title: { default: "Rescind", template: "%s · Rescind" },

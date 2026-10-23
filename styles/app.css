@@ -554,3 +554,13 @@
 .leader-foot { padding: 14px var(--card-pad); border-top: 1px solid var(--border); }
 .script { padding: 0 var(--card-pad) 8px; }
 .script-steps { display: grid; gap: 10px; padding-left: 20px; margin: 8px 0 0; max-width: 72ch; }
+
+/* ---------- not found and error ---------- */
+.boundary { min-height: calc(100svh - 56px); display: grid; align-content: center; }
+.boundary-panel { display: grid; gap: 32px; padding: 32px; width: 100%; }
+.boundary-main { display: grid; gap: 12px; align-content: start; }
+.boundary-links h2 { font-size: 16px; line-height: 22px; font-weight: 600; margin-bottom: 4px; }
+.boundary-links ul { list-style: none; padding: 0; margin: 0; }
+.boundary-panel h1 { font-size: var(--fs-title); line-height: 30px; font-weight: 600; }
+.boundary-panel p { font-size: 16px; line-height: 24px; max-width: 64ch; }
+.boundary-actions { display: flex; align-items: center; gap: 16px; margin-top: 8px; }
