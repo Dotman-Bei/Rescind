@@ -28,7 +28,7 @@ export function SiteNav() {
         <button className="nav-menu" aria-expanded={open} aria-controls="site-sheet" onClick={() => setOpen(true)}>
           Menu
         </button>
-        <Link href="/connect" className="button">Connect your key</Link>
+        <Link href="/connect" className="button">Set your mandate</Link>
       </nav>
       <div className="sheet" id="site-sheet" hidden={!open} role="dialog" aria-label="Menu">
         <div className="nav" style={{ paddingBlock: 0 }}>

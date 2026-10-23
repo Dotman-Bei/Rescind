@@ -26,15 +26,15 @@ receipt link. They have never seen Rescind and will give it thirty seconds.
 
 | Route | Reader | The one action it drives |
 | --- | --- | --- |
-| `/` | Depositor, judge | **Connect your key** (`/connect`). Second: read the sample receipt. |
+| `/` | Depositor, judge | **Set your mandate** (`/connect`). Second: read the sample receipt. |
 | `/verify/[receiptId]` | Verifier | **Open the two Strike URLs** and compare the timestamps. |
 | `/login` | Operator | **Unlock** with the passphrase. |
 | `/connect` | Operator | **Choose an onboarding path** (paste key). |
 | `/connect/key` | Operator | **Verify the key** after registering it on Strike. |
 | `/connect/wallet` | Operator | **Sign with your Cardano wallet**. |
 | `/app` | Operator | **Act on the watch that needs attention** (a pending withdrawal). Second: add a watch. |
-| `/vaults` | Operator | **Watch this vault**. |
-| `/vaults/[vaultId]` | Operator | **Watch this vault** (or open the existing watch). |
+| `/vaults` | Operator | **Set a mandate**. |
+| `/vaults/[vaultId]` | Operator | **Set a mandate** (or open the existing watch). |
 | `/watches/new` | Operator | **Arm the watch** (or start a dry run). |
 | `/watches/[watchId]` | Operator | **Cancel or keep the pending withdrawal** when one exists; else **File withdrawal now**. |
 | `/watches/[watchId]/mandate` | Operator | **Save as version N+1**. |
@@ -179,7 +179,7 @@ for the app lives in `lib/sample.ts` and is listed in section 6.
 ### 3.1 `/` Landing (public)
 
 **Nav** (plain bar, no chrome): `RESCIND` wordmark left · How it works · Mandate · Receipt · Key
-safety · **Connect your key** (button, square, brass). On a phone: wordmark and the button only, with
+safety · **Set your mandate** (button, square, brass). On a phone: wordmark and the button only, with
 links behind a "Menu" text button.
 
 **Hero: Photograph for a letter, with the clock as the picture.**
@@ -189,7 +189,7 @@ links behind a "Menu" text button.
   "STARTS AT THE BREACH" as its own 3:2 frame.
 - Supporting line (one sentence): "Rescind files your Strike vault withdrawal the moment a leader breaks
   your rules, and cancels it free if they cure in time."
-- Button: **Connect your key**. Text link beside it: "Read a receipt".
+- Button: **Set your mandate**. Text link beside it: "Read a receipt".
 
 **Section: stats, as a column aligned on the decimal** (`#vault`)
 - `h2`, two lines, the first in muted ink: "Glacier Arc, / read just now" (the first two words of the live vault's name). The
@@ -273,7 +273,7 @@ Caption: "Hamilton Model 21 marine chronometer, figure 13 of its 1943 manual."
 - Line: "Both start by connecting a key. A dry run evaluates and logs, and never files."
 
 **Footer: an invitation over the cropped name**
-- `h2`: "Set the rules / before you deposit." Button: **Connect your key**.
+- `h2`: "Set the rules / before you deposit." Button: **Set your mandate**.
 - Links: How it works · Strike vault API · Sample receipt · Operator login.
 - Legal row: "Not affiliated with Strike Finance. Not financial advice." and the photo credits.
 - `RESCIND` at full width, cropped by the bottom edge.
@@ -356,7 +356,7 @@ A three-part vertical flow on one screen, with the active part in ink and the ot
 ### 3.7 `/app` Watches (home)
 **Question: "Is any vault outside my mandate, and is an exit clock running?"**
 - `h1`: "Watches". Subline (the finding): "Rescind Demo Vault broke your 5x limit at 14:41. Your
-  withdrawal executes tomorrow at 14:41." Right: freshness "Polled 2 s ago" and **Add a watch**.
+  withdrawal executes tomorrow at 14:41." Right: freshness "Polled 2 s ago" and **Set a mandate**.
 - **Pending withdrawal card** first (the time-sensitive block): vault, rule, the exit clock bar, "23 h
   59 m left", and the actions **Cancel withdrawal** (secondary) and **Keep it** (text).
 - **Watches table:** vault · mode (Armed / Dry run / Paused) · state in words ("Withdrawal pending",
@@ -383,7 +383,7 @@ A three-part vertical flow on one screen, with the active part in ink and the ot
 - Right column: **Your position** (shares, locked, available, value) or "You hold no shares here.
   A watch on this vault runs as a dry run." Then **Pending withdrawals in this vault** (a list, or
   "None pending.").
-- Action: **Watch this vault** (or **Open watch**).
+- Action: **Set a mandate** (or **Open watch**).
 
 ### 3.10 `/watches/new?vault=` Create watch
 - `h1`: "Watch Glacier Arc Digital". Subline: "Set the four rules. Rescind checks them against the vault

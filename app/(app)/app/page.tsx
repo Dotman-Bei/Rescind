@@ -40,7 +40,7 @@ export default function WatchesHome() {
         </div>
         <div className="actions">
           <span className="stamp">Polled {ago(SAMPLE_NOW - account.lastPollAt)} ago</span>
-          <Link href="/vaults" className="btn primary">Add a watch</Link>
+          <Link href="/vaults" className="btn primary">Set a mandate</Link>
         </div>
       </div>
 

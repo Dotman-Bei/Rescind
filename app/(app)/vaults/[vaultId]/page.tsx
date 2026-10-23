@@ -50,7 +50,7 @@ export default async function VaultView({ params }: Params) {
           ) : w ? (
             <Link href={`/watches/${w.id}`} className="btn primary">Open watch</Link>
           ) : (
-            <Link href={`/watches/new?vault=${v.id}`} className="btn primary">Watch this vault</Link>
+            <Link href={`/watches/new?vault=${v.id}`} className="btn primary">Set a mandate</Link>
           )}
         </div>
       </div>

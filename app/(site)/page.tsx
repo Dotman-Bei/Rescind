@@ -76,7 +76,7 @@ export default async function Landing() {
             </p>
             <div className="actions">
               <a href="#receipt" className="link">Read a receipt</a>
-              <Link href="/connect" className="button">Connect your key</Link>
+              <Link href="/connect" className="button">Set your mandate</Link>
             </div>
           </div>
         </div>
@@ -268,7 +268,7 @@ export default async function Landing() {
         <div className="grid foot-top">
           <div className="invite">
             <h2 data-reveal>Set the rules before you deposit</h2>
-            <Link href="/connect" className="button ink" data-reveal style={i(1)}>Connect your key</Link>
+            <Link href="/connect" className="button ink" data-reveal style={i(1)}>Set your mandate</Link>
           </div>
           <ul data-reveal style={i(2)}>
             <li><a href="#how">How it works</a></li>
