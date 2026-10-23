@@ -6,6 +6,10 @@
 import { get, signed, StrikeError } from "../lib/strike/client";
 import { decryptPrivateKey, encryptPrivateKey, generateKeys } from "../lib/strike/sign";
 import { readState, update } from "../lib/store";
+import { enqueue } from "../lib/commands";
+
+const MAJORS = ["BTC-USD", "ETH-USD", "SOL-USD", "ADA-USD", "XRP-USD"];
+const CRYPTO = ["ADA-USD", "BNB-USD", "BTC-USD", "DOGE-USD", "ETH-USD", "HYPE-USD", "LIT-USD", "NEAR-USD", "NIGHT-USD", "PUMP-USD", "SOL-USD", "XRP-USD", "ZEC-USD"];
 
 try {
   process.loadEnvFile(".env.local");
@@ -101,7 +105,33 @@ async function main() {
     return;
   }
 
-  console.log("Commands: keygen [label] | verify | position <vaultId> | smoke <vaultId> [--confirm]");
+  if (cmd === "watch") {
+    // watch <vaultId> [--armed] [--lev 5] [--markets majors|crypto|all] [--dd 15] [--stake 5]
+    const vaultId = args[0];
+    const flag = (n: string) => {
+      const i = args.indexOf(`--${n}`);
+      return i > -1 ? args[i + 1] : undefined;
+    };
+    const set = flag("markets") ?? "majors";
+    const allowedMarkets = set === "all" ? null : set === "crypto" ? CRYPTO : MAJORS;
+    enqueue({
+      type: "create_watch",
+      vaultId,
+      mode: args.includes("--armed") ? "armed" : "dry_run",
+      autoCancel: !args.includes("--no-auto-cancel"),
+      mandate: {
+        maxLeverage: flag("lev") ? Number(flag("lev")) : 5,
+        allowedMarkets,
+        allowedLabel: set === "all" ? null : set === "crypto" ? "Crypto (13)" : "Crypto majors (5)",
+        maxDrawdownPct: flag("dd") ? Number(flag("dd")) : 15,
+        minLeaderStakePct: flag("stake") ? Number(flag("stake")) : null,
+      },
+    });
+    console.log(`Queued a ${args.includes("--armed") ? "ARMED" : "dry-run"} watch on ${vaultId}. The worker picks it up on its next tick.`);
+    return;
+  }
+
+  console.log("Commands: keygen [label] | verify | position <vaultId> | smoke <vaultId> [--confirm] | watch <vaultId> [--armed] [--lev N] [--markets majors|crypto|all] [--dd N] [--stake N]");
 }
 
 main().catch((e) => {
