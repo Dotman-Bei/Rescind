@@ -540,3 +540,17 @@
   .set-row { grid-template-columns: 1fr; gap: 12px; }
   .field-grid { grid-template-columns: 1fr; }
 }
+
+/* ---------- leader console ---------- */
+.leader-form { display: grid; gap: 16px; justify-items: start; }
+.leader-form .field { width: 100%; }
+.leader-form select.input { max-width: 320px; }
+.presets-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.after-kv { width: 100%; padding-top: 8px; border-top: 1px solid var(--rule); }
+.after-kv .over { color: var(--negative); font-weight: 600; }
+.leader-side { display: flex; flex-direction: column; }
+.leader-figure { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; padding: 0 var(--card-pad) 16px; }
+.leader-figure strong { font-size: var(--fs-answer); line-height: 36px; font-weight: 600; color: var(--data); }
+.leader-foot { padding: 14px var(--card-pad); border-top: 1px solid var(--border); }
+.script { padding: 0 var(--card-pad) 8px; }
+.script-steps { display: grid; gap: 10px; padding-left: 20px; margin: 8px 0 0; max-width: 72ch; }
