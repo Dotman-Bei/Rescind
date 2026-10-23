@@ -27,11 +27,17 @@ The withdrawal's `timestamp` minus the fill's `timestamp` is the claim. The publ
   commodity markets) and MARKET WIZARDS breaks a 2x limit (2.37x measured).
 - **Verified on mainnet, auth:** a Rescind-generated Ed25519 key was registered with Authorize on Strike, and a
   signed `GET /v2/account` succeeded on the master account (no sub-account binding).
-- **Built but not yet exercised on mainnet, write side:** `POST /v2/vault/withdraw` and the cancel route. The
-  depositor account had no vault shares at submission, so there was nothing to withdraw. The full path (idempotency
-  check, file, pending-row tracking, cure cancel, flapping guard, receipt) is in `worker/index.ts`, and
-  `npx tsx scripts/rescind.ts smoke <vaultId> --confirm` runs the file → pending → cancel check the moment the
-  account holds shares.
+- **Verified on mainnet, write-side authorisation (Oct 23, 2026):** `scripts/probe.ts` sent both write routes with
+  the API key, from an account holding no shares (so nothing could move):
+  - `POST /v2/vault/withdraw` → `200 {"success":true,"message":"withdrawal request submitted","request_id":"2fe2de1d-…"}`.
+    Strike accepts API-wallet keys on this master-only route; its engine then dropped the request (no shares,
+    no history row, position unchanged).
+  - `POST /v2/vault/:id/withdrawals/<unknown id>/cancel` → `404 withdrawal not found`. The key passed
+    authorisation; only the id was unknown.
+  This clears the PRD's main kill criterion (§24: "the withdraw or cancel route refuses API-wallet auth").
+- **Not yet exercised on mainnet:** a withdrawal that reaches `pending` with an `execute_at`, a cancel of it, and a
+  real receipt. That needs vault shares (MARKET WIZARDS' minimum is $50).
+  `npx tsx scripts/rescind.ts smoke <vaultId> --confirm` runs it once the account holds shares.
 - The receipt shown on `/verify/rc_8Hq2vXk4Tn` is **sample data** that shows what a real receipt looks like.
 
 ## One live fact
