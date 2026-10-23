@@ -373,3 +373,35 @@
   .vault-table td:nth-child(8) .sub { display: inline; margin-left: 4px; }
   .vault-table td:nth-child(9) { grid-column: 2; grid-row: 3; align-self: center; }
 }
+
+/* ---------- vault view ---------- */
+.pos-table td { padding-top: 10px; padding-bottom: 10px; }
+.minibar { display: block; height: 2px; margin-top: 6px; margin-left: auto; width: 120px; background: transparent; }
+.minibar span { display: block; height: 2px; margin-left: auto; background: var(--control); }
+.minibar span.lead { background: var(--text); }
+.queue-row { justify-content: space-between; }
+.queue-row .sub { display: block; font-size: 13px; color: var(--muted); }
+.pos-panel { display: flex; flex-direction: column; }
+.pos-foot { margin-top: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; padding: 14px var(--card-pad); border-top: 1px solid var(--border); }
+.pos-total strong { font-weight: 600; }
+.group-row { padding: 15px 0; }
+.group-line { display: flex; justify-content: space-between; gap: 12px; }
+.minibar.wide { width: 100%; margin-left: 0; height: 4px; margin-top: 8px; border-radius: 999px; background: var(--raised); }
+.minibar.wide span { height: 4px; border-radius: 999px; }
+.minibar.wide span { margin-left: 0; }
+
+.summary { display: flex; flex-direction: column; }
+.sub-h { font-size: 14px; line-height: 20px; font-weight: 600; margin: 20px 0 4px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.summary-foot { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--rule); font-weight: 600; }
+.share-col { width: 22%; }
+.share-cell { display: grid; grid-template-columns: 1fr 48px; gap: 10px; align-items: center; }
+.share-cell .minibar { margin-top: 0; }
+.share-cell .num { text-align: right; font-size: 13px; }
+@media (max-width: 1100px) {
+  .pos-table th:nth-child(2), .pos-table td:nth-child(2), .pos-table th:nth-child(8), .pos-table td:nth-child(8) { display: none; }
+}
+@media (max-width: 640px) {
+  .pos-table th:nth-child(3), .pos-table td:nth-child(3), .pos-table th:nth-child(4), .pos-table td:nth-child(4), .pos-table th:nth-child(6), .pos-table td:nth-child(6) { display: none; }
+}
+.small-note { margin-top: 8px; font-size: 13px; line-height: 18px; }
+.small-note { margin-top: 8px; font-size: 13px; line-height: 18px; }
