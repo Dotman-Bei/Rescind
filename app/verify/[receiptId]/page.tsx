@@ -49,7 +49,7 @@ export default async function VerifyPage({ params }: Params) {
         <ReceiptBody r={r} />
 
         <p className="report-foot small faint">
-          Rescind shows only data Strike already publishes. Not affiliated with Strike Finance. Not financial advice.
+          Rescind shows only data Strike already publishes.
         </p>
       </main>
     </>

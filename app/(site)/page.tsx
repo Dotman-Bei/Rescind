@@ -275,9 +275,6 @@ export default async function Landing() {
             <li><Link href="/login">Operator login</Link></li>
           </ul>
         </div>
-        <div className="legal">
-          <p>Not affiliated with Strike Finance. Not financial advice.</p>
-        </div>
         <div className="bigname" aria-hidden="true">
           <svg viewBox="0 0 1000 260" preserveAspectRatio="xMidYMin meet">
             <text x="0" y="258" fontSize="340" textLength="1000" lengthAdjust="spacingAndGlyphs">RESCIND</text>

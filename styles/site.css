@@ -208,7 +208,7 @@
 .ask .or, .ask .note { color: var(--field-muted); font-size: var(--step-body); }
 
 /* ---------- footer: invitation over a cropped name ---------- */
-.foot { min-height: 100svh; display: grid; grid-template-rows: 1fr auto auto; overflow: hidden; padding-top: var(--section); }
+.foot { min-height: 100svh; display: grid; grid-template-rows: 1fr auto; overflow: hidden; padding-top: var(--section); }
 .foot-top { align-items: start; row-gap: 40px; }
 .foot-top .invite { grid-column: 1 / span 7; display: grid; gap: 32px; justify-items: start; }
 .foot-top ul { grid-column: 10 / -1; display: grid; gap: 12px; font-size: var(--step-body); font-weight: 600; }
@@ -217,7 +217,7 @@
 .legal { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; font-size: var(--step-small); color: var(--muted); padding-block: 48px 16px; }
 .legal p { max-width: 70ch; }
 /* The name, fitted to the content width by SVG textLength and cut by the bottom edge. */
-.bigname { overflow: hidden; height: 19vw; }
+.bigname { overflow: hidden; height: 19vw; margin-top: 48px; }
 .bigname svg { width: 100%; height: auto; overflow: visible; }
 .bigname text { font-family: var(--font-display); fill: var(--ink); text-transform: uppercase; }
 
