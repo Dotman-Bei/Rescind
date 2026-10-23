@@ -14,7 +14,12 @@ export async function body(req: Request): Promise<Record<string, unknown>> {
 }
 
 export function queue(c: Command, message: string) {
-  enqueue(c);
+  try {
+    enqueue(c);
+  } catch {
+    // Hosted demos (e.g. Vercel) have a read-only disk and no worker to act on commands.
+    return bad("This public demo is read-only. Run Rescind locally with its worker to act on a vault.", 503);
+  }
   return ok({ message, queued: c.type });
 }
 
