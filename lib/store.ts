@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import type { Activity, Mandate, Receipt, RuleResult, WatchState, Mode } from "./sample";
 
-export const DATA_DIR = path.join(process.cwd(), "data");
+export const DATA_DIR = path.join(process.cwd(), process.env.RESCIND_DATA || "data");
 const FILE = path.join(DATA_DIR, "state.json");
 
 export type StoredAccount = {

@@ -20,4 +20,6 @@ next-env.d.ts
 
 # runtime state with encrypted key material
 data/
+data-sim/
+.next-sim/
 demo/*.mp4

@@ -105,6 +105,12 @@ async function main() {
     return;
   }
 
+  if (cmd === "publish") {
+    enqueue({ type: "publish", receiptId: args[0], public: !args.includes("--private") });
+    console.log(`Queued ${args.includes("--private") ? "unpublish" : "publish"} for ${args[0]}.`);
+    return;
+  }
+
   if (cmd === "watch") {
     // watch <vaultId> [--armed] [--lev 5] [--markets majors|crypto|all] [--dd 15] [--stake 5]
     const vaultId = args[0];

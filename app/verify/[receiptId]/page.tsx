@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ReceiptBody } from "@/components/app/ReceiptBody";
 import { StatusPill } from "@/components/app/StatusPill";
+import { SimBanner } from "@/components/app/SimBanner";
 import { span } from "@/lib/format";
 import { gapMs } from "@/lib/sample";
 import { getReceipt } from "@/lib/data";
@@ -34,6 +35,7 @@ export default async function VerifyPage({ params }: Params) {
       </header>
 
       <main className="report">
+        <SimBanner />
         <div className="title-row">
           <div>
             <h1>Withdrawal filed {span(gap)} after the breaching fill</h1>

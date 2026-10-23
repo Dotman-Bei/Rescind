@@ -94,6 +94,7 @@ export function getAccount() {
     keyVerifiedAt: s.account.verifiedAt ?? s.account.createdAt,
     workerHeartbeatAt: s.heartbeatAt,
     lastPollAt: s.heartbeatAt,
+    network: (process.env.STRIKE_ENV === "simulated" ? "simulated" : process.env.STRIKE_ENV === "testnet" ? "testnet" : "mainnet") as "mainnet" | "testnet",
     live: true,
   };
 }

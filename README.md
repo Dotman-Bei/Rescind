@@ -38,6 +38,14 @@ The withdrawal's `timestamp` minus the fill's `timestamp` is the claim. The publ
 - **Not yet exercised on mainnet:** a withdrawal that reaches `pending` with an `execute_at`, a cancel of it, and a
   real receipt. That needs vault shares (MARKET WIZARDS' minimum is $50).
   `npx tsx scripts/rescind.ts smoke <vaultId> --confirm` runs it once the account holds shares.
+- **End to end against a simulated Strike:** `sim/server.ts` is a local stand-in that answers as Strike's docs
+  describe (withdraw returns a request id, the history row goes `pending` with `execute_at` = request + 24 h,
+  cancel flips it to `cancelled`). Running the real worker against it, unchanged, the full cycle passed: leader
+  pushed to 15x → breach confirmed on the 2nd read → `withdraw_all` filed 9.5 s after the breaching fill → leader
+  cut to 3x → cure after the 30 s grace → cancelled 35.7 s into a 24 h clock, 124.06 shares unlocked, no fee →
+  receipt published. Every screen shows a "Simulated Strike" banner in this mode. To reproduce:
+  `npx tsx sim/server.ts`, then run the scripts and worker with `STRIKE_ENV=simulated RESCIND_DATA=data-sim`,
+  and drive the leader with `curl -X POST localhost:4100/sim/leverage -d '{"target":15}'`.
 - The receipt shown on `/verify/rc_8Hq2vXk4Tn` is **sample data** that shows what a real receipt looks like.
 
 ## One live fact

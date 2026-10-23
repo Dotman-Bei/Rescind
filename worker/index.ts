@@ -140,7 +140,7 @@ async function cancel(s: State, w: StoredWatch, auto: boolean) {
     await signed("POST", `/v2/vault/${w.vaultId}/withdrawals/${r.withdrawal.id}/cancel`, k);
     w.state = "armed_cancelling";
     if (auto) w.autoCancelTimes.push(Date.now());
-    log(s, w.id, { ts: Date.now(), kind: "cancel", text: `${auto ? "Cure confirmed. " : ""}Cancel sent: ${r.withdrawal.id.slice(0, 8)}…`, detail: auto ? `${s.settings.cureConfirmN} passing reads.` : "Cancelled by hand." });
+    log(s, w.id, { ts: Date.now(), kind: "cancel", text: `${auto ? "Cure confirmed. " : ""}Cancel sent: ${r.withdrawal.id.slice(0, 8)}…`, detail: auto ? `${w.cureStreak} passing reads in a row.` : "Cancelled by hand." });
   } catch (e) {
     // 404: already executed or cancelled (PRD §10.2); the next history read decides.
     log(s, w.id, { ts: Date.now(), kind: "error", text: `Cancel answered ${(e as StrikeError).status ?? ""} ${(e as Error).message}`, detail: "Re-reading history." });

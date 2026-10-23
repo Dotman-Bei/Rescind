@@ -2,7 +2,12 @@
 // Writes are limited to an allowlist (§22): vault withdraw and cancel, plus order/create/deposit in demo mode.
 import { signHeaders, type Keys } from "./sign";
 
-export const HOST = process.env.STRIKE_ENV === "testnet" ? "https://api-v2-testnet.strikefinance.org" : "https://api.strikefinance.org";
+export const HOST =
+  process.env.STRIKE_ENV === "simulated"
+    ? `http://localhost:${process.env.SIM_PORT ?? 4100}` // sim/server.ts, a local stand-in, not Strike
+    : process.env.STRIKE_ENV === "testnet"
+      ? "https://api-v2-testnet.strikefinance.org"
+      : "https://api.strikefinance.org";
 
 const WRITE_ALLOW = [/^POST \/v2\/vault\/withdraw$/, /^POST \/v2\/vault\/[0-9a-f-]+\/withdrawals\/[0-9a-f-]+\/cancel$/];
 const DEMO_ALLOW = [/^POST \/v2\/order$/, /^POST \/v2\/vault\/(create|deposit)$/];
