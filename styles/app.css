@@ -469,3 +469,20 @@
 .versions li { display: grid; gap: 2px; padding: 10px 0; }
 .versions li + li { border-top: 1px solid var(--rule); }
 .ver-line { display: flex; align-items: center; gap: 8px; }
+
+/* ---------- activity log ---------- */
+.filters { margin-bottom: var(--gap); }
+.log { list-style: none; padding: 0; margin: 0; }
+.log-row { display: grid; grid-template-columns: 150px minmax(0, 1.1fr) minmax(0, 1fr); gap: 4px 24px; align-items: baseline; padding: 14px var(--card-pad); }
+.log-row + .log-row { border-top: 1px solid var(--rule); }
+.log-when { color: var(--muted); }
+.log-day { display: block; color: var(--text); font-weight: 600; }
+.log-what { display: grid; grid-template-columns: 76px minmax(0, 1fr); align-items: baseline; gap: 10px; }
+.log-what .pill { justify-self: start; }
+.log-what strong { font-weight: 600; }
+.empty-row { display: block; }
+@media (max-width: 900px) {
+  .log-row { grid-template-columns: 1fr; }
+  .log-day { display: inline; margin-right: 6px; }
+}
+@media (max-width: 480px) { .filters { display: flex; width: 100%; overflow-x: auto; } .filters button { flex: none; } }
