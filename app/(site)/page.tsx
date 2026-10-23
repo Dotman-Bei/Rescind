@@ -97,7 +97,6 @@ export default async function Landing() {
                 loading="lazy"
                 alt="The trading floor of the New York Stock Exchange from above: trading posts, screens and traders."
               />
-              <figcaption>Trading floor of the New York Stock Exchange. Carol M. Highsmith.</figcaption>
             </figure>
           </div>
           <dl className="ledger">
@@ -151,7 +150,6 @@ export default async function Landing() {
             <video autoPlay muted loop playsInline preload="metadata" poster="/photos/clock-tick-poster.jpg" width={540} height={720} aria-hidden="true">
               <source src="/photos/clock-tick.webm" type="video/webm" />
             </video>
-            <figcaption>Wall clock by Andreas Huber, Munich, at the Wien Museum. Furkan Akkurt.</figcaption>
           </figure>
         </div>
       </section>
@@ -168,10 +166,6 @@ export default async function Landing() {
             alt="Exploded line drawing of a ship chronometer's gear train: fusee, escape wheel, balance unit and hands."
           />
         </div>
-        <figcaption>
-          <span>Hamilton Model 21 marine chronometer, figure 13 of its 1943 manual.</span>
-          <span>Hamilton Watch Company, public domain.</span>
-        </figcaption>
       </figure>
 
       {/* ---------- showcase: the live thing ---------- */}
@@ -285,11 +279,6 @@ export default async function Landing() {
         </div>
         <div className="legal">
           <p>Not affiliated with Strike Finance. Not financial advice.</p>
-          <p>
-            Photographs: NYSE trading floor by Carol M. Highsmith (public domain); Hamilton Model 21 chronometer,
-            Hamilton Watch Company (public domain); Andreas Huber clock by Furkan Akkurt, CC BY-SA 4.0. All via
-            Wikimedia Commons.
-          </p>
         </div>
         <div className="bigname" aria-hidden="true">
           <svg viewBox="0 0 1000 260" preserveAspectRatio="xMidYMin meet">

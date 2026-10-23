@@ -127,4 +127,12 @@ npm run dev                     # http://localhost:3217
 
 ---
 
-Not affiliated with Strike Finance. Not financial advice. Photographs on the landing page are public domain or CC BY-SA 4.0, credited on the page.
+## Image credits
+
+All via Wikimedia Commons:
+
+- Trading floor of the New York Stock Exchange, by Carol M. Highsmith (public domain).
+- Hamilton Model 21 marine chronometer, figure 13 of its 1943 manual, by Hamilton Watch Company (public domain).
+- Andreas Huber clock ticking, Wien Museum, by Furkan Akkurt (CC BY-SA 4.0).
+
+Not affiliated with Strike Finance. Not financial advice.
