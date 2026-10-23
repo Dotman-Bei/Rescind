@@ -259,7 +259,9 @@
   .nav-links a:not(.button) { display: none; }
   .nav-menu { display: inline-flex; align-items: center; }
   .hero h1 { line-height: 0.92; }
-  .hero h1 .row { white-space: normal; }
+  .hero h1 { font-size: 12vw; }
+  .hero h1 .row { display: inline; white-space: normal; }
+  .hero h1 .word, .js .hero h1 .word { display: inline; }
   .hero h1 .row .slot { display: none; }
   .slot-phone { display: block !important; width: 100%; aspect-ratio: 3 / 2; height: auto; margin: 12px 0; font-size: 1em; }
   .slot-phone .digits { font-size: 0.62em; }

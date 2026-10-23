@@ -182,7 +182,7 @@ for the app lives in `lib/sample.ts` and is listed in section 6.
 safety · **Set your mandate** (button, square, brass). On a phone: wordmark and the button only, with
 links behind a "Menu" text button.
 
-**Hero: Photograph for a letter, with the clock as the picture.**
+**Hero: the sentence alone.** (The countdown frame that sat inside the sentence was removed at the owner's request.)
 - `h1` (aria-label "Your exit clock starts at the breach"): **YOUR EXIT [clock] STARTS AT THE BREACH**.
   The bracket is a brass frame one cap-height tall holding a live countdown from 24:00:00, the
   length of a one-day lockup. On a phone the clock leaves the line and sits between "YOUR EXIT" and

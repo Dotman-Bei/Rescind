@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { HeroClock } from "@/components/site/HeroClock";
 import { RuleTester } from "@/components/site/RuleTester";
 import { SiteNav } from "@/components/site/SiteNav";
 import { clockMs, dayHm, hm, shortId, span } from "@/lib/format";
@@ -59,12 +58,11 @@ export default async function Landing() {
       <section className="hero wrap">
         <SiteNav />
         <div className="hero-body">
-          <h1 aria-label="Your exit clock starts at the breach">
+          <h1>
             <span className="row">
               <span className="word" style={i(0)}>Your exit</span>
-              <HeroClock lockupDays={v.lockupDays} variant="inline" />
             </span>
-            <HeroClock lockupDays={v.lockupDays} variant="phone" />
+            {" "}
             <span className="row">
               <span className="word" style={i(2)}>starts at the breach</span>
             </span>
