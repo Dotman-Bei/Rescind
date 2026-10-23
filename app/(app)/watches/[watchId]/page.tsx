@@ -126,7 +126,7 @@ export default async function WatchDetail({ params }: Params) {
                 </dl>
                 {w.mode === "dry_run" && availableShares(v) === 0 && (
                   <div className="panel-foot">
-                    <span className="muted">To arm it, deposit {v.minDeposit ? `at least ${v.minDeposit} ` : ""}into the vault from this account.</span>
+                    <span className="muted">To arm it, deposit {v.minDeposit ? `at least $${v.minDeposit} ` : ""}into the vault from this account.</span>
                     <Link href={`/vaults/${v.id}`} className="card-link">Open vault</Link>
                   </div>
                 )}
