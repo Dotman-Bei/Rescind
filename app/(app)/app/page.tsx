@@ -30,7 +30,12 @@ export default function WatchesHome() {
           <p className="sub">
             {lead
               ? `${vaultName(lead.w)} broke your ${lead.r!.rules.find((x) => x.status === "breach")?.limit}x limit at ${hm(lead.r!.fill.ts)}. Your withdrawal executes tomorrow at ${hm(lead.r!.withdrawal.executeAt)} unless the leader cures.`
-              : "Every armed vault is inside its mandate. No exit clock is running."}
+              : (() => {
+                  const out = watches.filter((w) => w.rules.some((r) => r.status === "breach"));
+                  const dry = watches.filter((w) => w.mode === "dry_run").length;
+                  if (!out.length) return "Every watched vault is inside its mandate. No exit clock is running.";
+                  return `${out.length} of ${watches.length} vaults are outside their mandate now.${dry === watches.length ? " All are dry runs, so nothing was filed." : ""}`;
+                })()}
           </p>
         </div>
         <div className="actions">
