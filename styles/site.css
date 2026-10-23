@@ -268,15 +268,14 @@
   .hero-foot .actions { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 20px; }
 
   .ledger-left { grid-template-columns: 1fr; }
-  .ledger-left h2 { font-size: 28px; line-height: 1; }
   .ledger { grid-template-columns: 52% minmax(0, 1fr); row-gap: 4px; }
-  .ledger .int, .ledger .dec { font-size: 15vw; }
+  .ledger .int, .ledger .dec { font-size: var(--step-head); }
   .ledger .dec { padding-right: 0; }
-  .ledger .cap { grid-column: 1 / -1; font-size: 15px; margin-bottom: 24px; }
+  .ledger .cap { grid-column: 1 / -1; font-size: var(--step-body); margin-bottom: 24px; }
 
   .how h2 { margin-bottom: 32px; }
-  .stage .bar { font-size: 20px; }
-  .stage .clause { font-size: 16px; }
+  .stage .bar { font-size: var(--step-lead); }
+  .stage .clause { font-size: var(--step-body); }
   .how-after { grid-template-columns: 1fr; row-gap: 32px; margin-top: 64px; }
   .how-after .statement, .how-after figure { grid-column: 1; }
 
@@ -289,21 +288,22 @@
   .answer { padding: 20px; }
   .examples { display: flex; flex-wrap: wrap; gap: 8px; }
   .examples p { width: 100%; }
-  .examples button { background: var(--surface); padding: 0 14px; min-height: 44px; font-size: 16px; text-decoration: none; }
+  .examples button { background: var(--surface); padding: 0 14px; min-height: 44px; font-size: var(--step-body); text-decoration: none; }
 
   .proof-head h2, .proof-head .copy { grid-column: 1 / -1; }
   .proof-stage { margin-top: 48px; height: 520px; }
-  .card { width: 92vw; padding: 28px; transform: rotate(-1deg); margin-left: calc(4vw - var(--margin)); }
-  .card dl, .card .line { font-size: 15px; }
-  .card .line { grid-template-columns: 1fr max-content; }
+  .card { width: calc(100% - 12px); padding: 24px; transform: rotate(-1deg); margin-inline: auto; }
+  .card dl, .card .line { font-size: var(--step-body); }
+  .card .line { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); }
+  .card dd { overflow-wrap: anywhere; }
   .card .line::after { display: none; }
 
   .faq-list { margin-top: 40px; }
   .faq details { margin-inline: calc(var(--margin) * -1); padding-inline: var(--margin); }
-  .faq summary { font-size: 19px; }
-  .faq .answer-text { font-size: 16px; }
+  .faq summary { font-size: var(--step-lead); }
+  .faq .answer-text { font-size: var(--step-body); }
 
-  .ask h2 { font-size: 18vw; }
+  .ask h2 { font-size: var(--step-display); }
   .ask .choice { grid-template-columns: 1fr; gap: 12px; justify-items: center; }
   .ask .choice > * { justify-self: center !important; }
   .ask .choice .button { width: 72vw; }
@@ -311,7 +311,7 @@
   .foot { min-height: 0; }
   .foot-top .invite, .foot-top ul { grid-column: 1 / -1; }
   .foot-top .invite .button { width: 100%; }
-  .foot-top ul { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 15px; }
+  .foot-top ul { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: var(--step-body); }
   .bigname { height: 21vw; }
 }
 @media (min-width: 701px) { .slot-phone { display: none !important; } }
