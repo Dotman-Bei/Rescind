@@ -1,6 +1,7 @@
 // Words for the operator screens, derived from the sample (later: API) objects.
 import { dayHm } from "./format";
-import { RULE_LABEL, overall, receipt, vault, type Receipt, type RuleResult, type Watch } from "./sample";
+import { RULE_LABEL, overall, type Receipt, type RuleResult, type Watch } from "./sample";
+import { getReceipt, getVaultForWatch } from "./data";
 
 export const MODE_LABEL = { armed: "Armed", dry_run: "Dry run", paused: "Paused" } as const;
 
@@ -48,11 +49,11 @@ export function rulesCount(w: Watch) {
 }
 
 export function pendingFor(w: Watch) {
-  const r = w.pendingReceiptId ? receipt(w.pendingReceiptId) : undefined;
+  const r = w.pendingReceiptId ? getReceipt(w.pendingReceiptId) : undefined;
   return r && r.withdrawal.status === "pending" ? r : undefined;
 }
 
-export const vaultName = (w: Watch) => vault(w.vaultId)?.name ?? w.vaultId;
+export const vaultName = (w: Watch) => getVaultForWatch(w)?.name ?? w.vaultId;
 
 export const withdrawalStatusText = (r: Receipt) =>
   r.withdrawal.status === "cancelled" ? "Cancelled · cost $0.00" : r.withdrawal.status === "pending" ? `Pending · executes ${dayHm(r.withdrawal.executeAt)}` : r.withdrawal.status === "completed" ? "Executed" : "Failed";

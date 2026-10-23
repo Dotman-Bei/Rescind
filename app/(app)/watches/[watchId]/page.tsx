@@ -7,14 +7,18 @@ import { PendingActions } from "@/components/app/PendingActions";
 import { RuleLedger } from "@/components/app/RuleLedger";
 import { WatchControls } from "@/components/app/WatchControls";
 import { ago, clock, day, dayHm, hm, range } from "@/lib/format";
-import { SAMPLE_NOW, account, activity, availableShares, receipts, settings, vault, watch } from "@/lib/sample";
+import { availableShares } from "@/lib/sample";
+import { getAccount, getActivity, getReceipts, getSettings, getVaultForWatch, getWatch, isLive, now } from "@/lib/data";
+import { AutoRefresh } from "@/components/app/AutoRefresh";
+
+export const dynamic = "force-dynamic";
 import { headlineRule, pendingFor, stateText } from "@/lib/view";
 
 type Params = { params: Promise<{ watchId: string }> };
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const w = watch((await params).watchId);
-  return { title: w ? vault(w.vaultId)?.name : "Watch" };
+  const w = getWatch((await params).watchId);
+  return { title: w ? getVaultForWatch(w)?.name : "Watch" };
 }
 
 const STATES = [
@@ -26,12 +30,16 @@ const STATES = [
 ];
 
 export default async function WatchDetail({ params }: Params) {
-  const w = watch((await params).watchId);
+  const w = getWatch((await params).watchId);
   if (!w) notFound();
-  const v = vault(w.vaultId)!;
+  const v = getVaultForWatch(w)!;
+  const account = getAccount();
+  const settings = getSettings();
+  const receipts = getReceipts();
+  const SAMPLE_NOW = now();
   const pending = pendingFor(w);
   const breach = w.rules.find((r) => r.status === "breach");
-  const log = activity[w.id] ?? [];
+  const log = getActivity(w.id);
   const last = receipts.filter((r) => r.watchId === w.id).at(-1);
   const current =
     w.state === "armed_pending" ? "pending" : w.state === "armed_filing" ? "filing" : w.state === "armed_cancelling" ? "cancelling" : w.state === "exited" ? "exited" : "clear";
@@ -44,6 +52,7 @@ export default async function WatchDetail({ params }: Params) {
 
   return (
     <>
+      <AutoRefresh on={isLive()} />
       <nav className="crumbs" aria-label="Breadcrumb">
         <Link href="/app">Watches</Link>
         <span aria-hidden="true">/</span>
@@ -117,7 +126,7 @@ export default async function WatchDetail({ params }: Params) {
                 </dl>
                 {w.mode === "dry_run" && availableShares(v) === 0 && (
                   <div className="panel-foot">
-                    <span className="muted">To arm it, deposit at least ${v.minDeposit} into the vault from this account.</span>
+                    <span className="muted">To arm it, deposit {v.minDeposit ? `at least ${v.minDeposit} ` : ""}into the vault from this account.</span>
                     <Link href={`/vaults/${v.id}`} className="card-link">Open vault</Link>
                   </div>
                 )}

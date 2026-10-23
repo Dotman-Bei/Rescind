@@ -2,7 +2,8 @@ import { CopyButton } from "./CopyButton";
 import { ExitClockBar } from "./ExitClockBar";
 import { RuleLedger } from "./RuleLedger";
 import { clockMs, shortId, span } from "@/lib/format";
-import { SAMPLE_NOW, fillsUrl, gapMs, historyUrl, type Receipt } from "@/lib/sample";
+import { fillsUrl, gapMs, historyUrl, type Receipt } from "@/lib/sample";
+import { now } from "@/lib/data";
 
 /** The public body of a receipt (PRD §17), shared by the verify page and the operator's receipt page. */
 export function ReceiptBody({ r }: { r: Receipt }) {
@@ -45,7 +46,7 @@ export function ReceiptBody({ r }: { r: Receipt }) {
           <h2 id="clock-h">Exit clock</h2>
           <span className="meta">{r.lockupDays}-day lockup: execute_at is the request plus {r.lockupDays * 24} h</span>
         </header>
-        <ExitClockBar requestedAt={w.requestedAt} executeAt={w.executeAt} now={SAMPLE_NOW} cancelledAt={w.cancelledAt} />
+        <ExitClockBar requestedAt={w.requestedAt} executeAt={w.executeAt} now={now()} cancelledAt={w.cancelledAt} />
         {r.cure && (
           <p className="cure">
             <strong>Cured at {clockMs(r.cure.confirmedAt).slice(0, 8)}.</strong> {r.cure.note} The cancel cost nothing and the

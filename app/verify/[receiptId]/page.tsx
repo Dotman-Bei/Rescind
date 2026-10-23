@@ -4,18 +4,21 @@ import { notFound } from "next/navigation";
 import { ReceiptBody } from "@/components/app/ReceiptBody";
 import { StatusPill } from "@/components/app/StatusPill";
 import { span } from "@/lib/format";
-import { gapMs, receipt } from "@/lib/sample";
+import { gapMs } from "@/lib/sample";
+import { getReceipt } from "@/lib/data";
+
+export const dynamic = "force-dynamic";
 import { withdrawalStatusText } from "@/lib/view";
 
 type Params = { params: Promise<{ receiptId: string }> };
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const r = receipt((await params).receiptId);
+  const r = getReceipt((await params).receiptId);
   return r?.public ? { title: `Receipt: ${r.vaultName}` } : { title: "Receipt not found" };
 }
 
 export default async function VerifyPage({ params }: Params) {
-  const r = receipt((await params).receiptId);
+  const r = getReceipt((await params).receiptId);
   // Only published receipts are public (PRD FR-33).
   if (!r || !r.public) notFound();
   const gap = gapMs(r);

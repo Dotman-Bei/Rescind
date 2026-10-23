@@ -4,7 +4,10 @@ import { notFound } from "next/navigation";
 import { MandateEditor, type Draft } from "@/components/app/MandateEditor";
 import { dayHm } from "@/lib/format";
 import { ALL_MARKETS } from "@/lib/markets";
-import { availableShares, effectiveLeverage, vault, watch, type Mandate } from "@/lib/sample";
+import { availableShares, effectiveLeverage, type Mandate } from "@/lib/sample";
+import { getVaultForWatch, getWatch } from "@/lib/data";
+
+export const dynamic = "force-dynamic";
 
 type Params = { params: Promise<{ watchId: string }> };
 
@@ -28,9 +31,9 @@ const summary = (m: Mandate) =>
     .join(" · ");
 
 export default async function MandatePage({ params }: Params) {
-  const w = watch((await params).watchId);
+  const w = getWatch((await params).watchId);
   if (!w) notFound();
-  const v = vault(w.vaultId)!;
+  const v = getVaultForWatch(w)!;
   const next = w.mandates[0].version + 1;
 
   return (

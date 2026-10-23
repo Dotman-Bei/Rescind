@@ -3,18 +3,27 @@ import { ExitClockBar } from "@/components/app/ExitClockBar";
 import { PendingActions } from "@/components/app/PendingActions";
 import { StatusPill } from "@/components/app/StatusPill";
 import { ago, day, hm, span } from "@/lib/format";
-import { SAMPLE_NOW, account, receipts, settings, watches } from "@/lib/sample";
+import { getAccount, getReceipts, getSettings, getWatches, isLive, now } from "@/lib/data";
+import { AutoRefresh } from "@/components/app/AutoRefresh";
+
+export const dynamic = "force-dynamic";
 import { MODE_LABEL, headlineRule, pendingFor, rulesCount, stateText, vaultName } from "@/lib/view";
 
 export const metadata = { title: "Watches" };
 
 export default function WatchesHome() {
+  const watches = getWatches();
+  const receipts = getReceipts();
+  const account = getAccount();
+  const settings = getSettings();
+  const SAMPLE_NOW = now();
   const pending = watches.map((w) => ({ w, r: pendingFor(w) })).filter((x) => x.r);
   const lead = pending[0];
   const published = receipts.filter((r) => r.public).length;
 
   return (
     <>
+      <AutoRefresh on={isLive()} />
       <div className="title-row">
         <div>
           <h1>Watches</h1>

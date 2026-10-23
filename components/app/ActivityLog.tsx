@@ -41,12 +41,12 @@ export function ActivityLog({ rows }: { rows: Activity[] }) {
       </div>
       <section className="panel flush" aria-label="Activity">
         <ol className="log">
-          {shown.map((a) => {
+          {shown.map((a, idx) => {
             const d = day(a.ts);
             const head = d !== lastDay ? d : null;
             lastDay = d;
             return (
-              <li key={a.ts} className="log-row">
+              <li key={`${a.ts}-${idx}`} className="log-row">
                 <span className="log-when num">
                   {head && <span className="log-day">{head}</span>}
                   {a.until ? range(a.ts, a.until) : a.ts % 1000 ? clockMs(a.ts) : clock(a.ts)}

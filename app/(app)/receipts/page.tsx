@@ -2,12 +2,15 @@ import Link from "next/link";
 import { PublishToggle } from "@/components/app/PublishToggle";
 import { StatusPill } from "@/components/app/StatusPill";
 import { clockMs, dayHm, shortId, span } from "@/lib/format";
-import { gapMs, receipts } from "@/lib/sample";
+import { gapMs } from "@/lib/sample";
+import { getReceipts } from "@/lib/data";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = { title: "Receipts" };
 
 export default function ReceiptsPage() {
-  const list = [...receipts].sort((a, b) => b.confirmedAt - a.confirmedAt);
+  const list = [...getReceipts()].sort((a, b) => b.confirmedAt - a.confirmedAt);
   const published = list.filter((r) => r.public).length;
   const latestPublic = list.find((r) => r.public);
   return (

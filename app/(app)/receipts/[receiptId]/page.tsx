@@ -5,7 +5,10 @@ import { PublishToggle } from "@/components/app/PublishToggle";
 import { ReceiptBody } from "@/components/app/ReceiptBody";
 import { StatusPill } from "@/components/app/StatusPill";
 import { clockMs, span } from "@/lib/format";
-import { gapMs, receipt } from "@/lib/sample";
+import { gapMs } from "@/lib/sample";
+import { getReceipt } from "@/lib/data";
+
+export const dynamic = "force-dynamic";
 import { withdrawalStatusText } from "@/lib/view";
 
 type Params = { params: Promise<{ receiptId: string }> };
@@ -15,7 +18,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 }
 
 export default async function ReceiptPage({ params }: Params) {
-  const r = receipt((await params).receiptId);
+  const r = getReceipt((await params).receiptId);
   if (!r) notFound();
   const w = r.withdrawal;
 
