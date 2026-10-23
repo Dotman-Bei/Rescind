@@ -15,6 +15,8 @@ export const day = (ms: number) =>
   new Intl.DateTimeFormat("en-US", { timeZone: TZ, month: "short", day: "numeric" }).format(new Date(ms));
 /** Oct 23, 11:03 */
 export const dayHm = (ms: number) => `${day(ms)}, ${hm(ms)}`;
+/** 14:42–21:09, or Oct 21, 21:00 – Oct 22, 21:09 across days */
+export const range = (a: number, b: number) => (day(a) === day(b) ? `${hm(a)}–${hm(b)}` : `${dayHm(a)} – ${dayHm(b)}`);
 /** 2026-10-22 */
 export const isoDay = (ms: number) => new Date(ms).toISOString().slice(0, 10);
 

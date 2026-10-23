@@ -358,6 +358,16 @@ export const activity: Record<string, Activity[]> = {
     { ts: t(10, 3, 18, 344), kind: "breach", text: "Breach confirmed: effective leverage 14.81x > 5x", detail: "2nd breaching read. Fill 4346118, ETH-USD buy 2.57 at 2,377.03." },
     { ts: t(9, 58, 9), until: t(10, 3, 13), count: 60, kind: "evaluation", text: "Passing reads", detail: "All enabled rules passing." },
     { ts: t(9, 58, 4), kind: "config", text: "Mandate v2 saved and armed", detail: "Max 5x · crypto majors · max 15% drawdown. Peak seeded at 1.0012." },
+    { ts: Date.UTC(2026, 9, 21, 17, 20), kind: "config", text: "Watch created as a dry run, mandate v1", detail: "Max 10x · crypto · max 25% drawdown." },
+  ],
+  w_mw: [
+    { ts: Date.UTC(2026, 9, 19, 8, 30, 5), until: SAMPLE_NOW - 2_000, count: 51_203, kind: "evaluation", text: "Passing reads", detail: "Min leader stake reports unknown: the leader row isn't matched with certainty, so it never fires." },
+    { ts: Date.UTC(2026, 9, 19, 8, 30), kind: "config", text: "Mandate v1 saved and armed", detail: "Max 3x · max 10% drawdown · leader keeps 5%. Peak seeded at 0.9396." },
+  ],
+  w_glacier: [
+    { ts: Date.UTC(2026, 9, 21, 20, 0, 15), until: SAMPLE_NOW - 2_000, count: 15_904, kind: "evaluation", text: "Breaching reads, dry run", detail: "Nothing sent to Strike." },
+    { ts: Date.UTC(2026, 9, 21, 20, 0, 10), kind: "breach", text: "Would file: 11 markets outside your list", detail: "Dry run. Armed, this would have filed a withdrawal at this moment." },
+    { ts: Date.UTC(2026, 9, 21, 20, 0), kind: "config", text: "Watch created as a dry run, mandate v1", detail: "Max 3x · crypto · max 15% drawdown · leader keeps 50%." },
   ],
 };
 

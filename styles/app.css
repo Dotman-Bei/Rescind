@@ -444,3 +444,24 @@
 .check-list li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 0; }
 .check-list li + li { border-top: 1px solid var(--rule); }
 .what-happens { margin-top: 16px; padding-top: 10px; border-top: 1px solid var(--rule); }
+
+/* ---------- watch detail ---------- */
+.states { list-style: none; padding: 0; margin: 0 0 var(--gap); display: flex; flex-wrap: wrap; gap: 4px 24px; color: var(--faint); }
+.states li { display: inline-flex; align-items: center; gap: 6px; }
+.states li[aria-current="step"] { color: var(--text); font-weight: 600; }
+.states li[aria-current="step"] .dot { color: var(--data); width: 8px; height: 8px; }
+.pending-kv { margin: 16px 0; padding-top: 8px; border-top: 1px solid var(--rule); }
+.id-cell { display: inline-flex; gap: 10px; align-items: baseline; }
+.lead-line { font-size: 16px; line-height: 24px; max-width: 64ch; }
+.controls { display: grid; gap: 16px; }
+.controls .switch-row { margin-top: 0; }
+.control-block { display: grid; gap: 8px; justify-items: start; }
+.control-block .label { font-weight: 600; }
+.control-kv { padding-top: 8px; border-top: 1px solid var(--rule); }
+.recent-list { list-style: none; padding: 0; margin: 0; display: grid; }
+.recent-list li { display: grid; gap: 2px; padding: 9px 0; }
+.recent-list li + li { border-top: 1px solid var(--rule); }
+.recent-list .num { font-size: 12px; line-height: 16px; }
+.recent-list .kind-breach span:last-child { font-weight: 600; }
+.flex-panel { display: flex; flex-direction: column; }
+.panel-foot { margin-top: auto; padding-top: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; align-items: baseline; }
