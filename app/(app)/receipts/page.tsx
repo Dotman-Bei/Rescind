@@ -44,6 +44,14 @@ export default function ReceiptsPage() {
                 </tr>
               </thead>
               <tbody>
+                {list.length === 0 && (
+                  <tr>
+                    <td colSpan={6} className="empty-cell">
+                      No receipts yet. Rescind writes one the moment an armed watch files a withdrawal; dry runs never file.{" "}
+                      <Link href="/app" className="text-btn">See your watches</Link>
+                    </td>
+                  </tr>
+                )}
                 {list.map((r) => (
                   <tr key={r.id}>
                     <td>

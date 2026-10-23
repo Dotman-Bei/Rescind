@@ -164,7 +164,7 @@ export default async function WatchDetail({ params }: Params) {
               <h2 id="act-h">Recent activity</h2>
             </header>
             <ol className="recent-list">
-              {log.slice(0, 4).map((a) => (
+              {log.slice(0, 3).map((a) => (
                 <li key={a.ts} className={`kind-${a.kind}`}>
                   <span className="num faint">{a.until ? range(a.ts, a.until) : clock(a.ts)}</span>
                   <span>{a.count ? `${a.count.toLocaleString("en-US")} ${a.text.toLowerCase()}` : a.text}</span>
